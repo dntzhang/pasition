@@ -1,8 +1,19 @@
-﻿#### English | [﻿中文](https://github.com/AlloyTeam/pasition#中文--english)
-
-## pasition === path transition
- 
+﻿
+<p align="center">
+  <a href ="##"><img alt="Omi" src="http://images2015.cnblogs.com/blog/105416/201706/105416-20170614154238196-2066608546.gif"></a>
+</p>
+<p align="center">
+pasition === path transition
+</p>
+<p align="center">
 **1kb(gzip)**  javascript Path Transition library. 
+</p>
+<p align="center">
+  <a href="https://travis-ci.org/AlloyTeam/omi"><img src="https://travis-ci.org/AlloyTeam/omi.svg"></a>
+</p>
+
+---
+#### English | [﻿中文](https://github.com/AlloyTeam/pasition#中文--english)
 
 
 
@@ -26,7 +37,6 @@ pasition.animate(pathA, pathB, time, {
     end : function(){ }
 })
 ```
-
 
 
 
