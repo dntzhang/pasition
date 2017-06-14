@@ -38,6 +38,7 @@ pasition.animate(pathA, pathB, time, {
 })
 ```
 
+you can get the path from attr d of svg path element.
 
 
 ## DEMO
@@ -71,6 +72,8 @@ pasition.animate(pathA, pathB, time, {
     end : function(){ }
 })
 ```
+
+path从哪里来？你可以从svg的path的d属性获取。
 
 ## 在线演示
 
