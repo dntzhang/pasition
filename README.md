@@ -5,9 +5,9 @@
 <p align="center">
 pasition === path transition
 </p>
-<p align="center">
+<h3 align="center">
 1kb(gzip)  javascript Path Transition library. 
-</p>
+</h3>
 <p align="center">
   <a href="https://travis-ci.org/AlloyTeam/omi"><img src="https://travis-ci.org/AlloyTeam/omi.svg"></a>
 </p>
