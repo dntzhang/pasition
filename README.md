@@ -1,4 +1,4 @@
-﻿#### English | [﻿中文](https://github.com/AlloyTeam/AlloyLever#中文--english)
+﻿#### English | [﻿中文](https://github.com/AlloyTeam/pasition#中文--english)
 
 ## pasition === path transition
  
@@ -34,7 +34,7 @@ pasition.animate(pathA, pathB, time, {
 
 * [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
 
-#### 中文 | [English](https://github.com/AlloyTeam/AlloyLever#english--中文)
+#### 中文 | [English](https://github.com/AlloyTeam/pasition#english--中文)
 
 ## pasition === path transition 
 
