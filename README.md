@@ -2,12 +2,12 @@
 <p align="center">
   <a href ="##"><img alt="Omi" src="http://images2015.cnblogs.com/blog/105416/201706/105416-20170614174731868-1520193923.gif"></a>
 </p>
-<p align="center">
-pasition === path transition
-</p>
 <h3 align="center">
-1kb(gzip)  javascript Path Transition library. 
+pasition === path transition
 </h3>
+<p align="center">
+1kb(gzip)  javascript Path Transition library. 
+</p>
 <p align="center">
   <a href="https://travis-ci.org/AlloyTeam/omi"><img src="https://travis-ci.org/AlloyTeam/omi.svg"></a>
 </p>
