@@ -1,5 +1,5 @@
-/*!
- *  pasition v0.1.1 By dntzhang
+ï»¿/*!
+ *  pasition v0.1.2 By dntzhang
  *  Github: https://github.com/AlloyTeam/pasition
  *  MIT Licensed.
  */
@@ -117,9 +117,9 @@
         //S = smooth curveto
         //Q = quadratic Belzier curve
         //T = smooth quadratic Belzier curveto
-        //A = elliptical Arc  ÔİÊ±Î´ÊµÏÖ£¬ÓÃ±´Èû¶ûÄâºÏÍÖÔ²
+        //A = elliptical Arc  æš‚æ—¶æœªå®ç°ï¼Œç”¨è´å¡å°”æ‹Ÿåˆæ¤­åœ†
         //Z = closepath
-        //ÒÔÉÏËùÓĞÃüÁî¾ùÔÊĞíĞ¡Ğ´×ÖÄ¸¡£´óĞ´±íÊ¾¾ø¶Ô¶¨Î»£¬Ğ¡Ğ´±íÊ¾Ïà¶Ô¶¨Î»(´ÓÉÏÒ»¸öµã¿ªÊ¼)¡£
+        //ä»¥ä¸Šæ‰€æœ‰å‘½ä»¤å‡å…è®¸å°å†™å­—æ¯ã€‚å¤§å†™è¡¨ç¤ºç»å¯¹å®šä½ï¼Œå°å†™è¡¨ç¤ºç›¸å¯¹å®šä½(ä»ä¸Šä¸€ä¸ªç‚¹å¼€å§‹)ã€‚
         var cmds = pasition.parse(path),
             preX = 0,
             preY = 0,
