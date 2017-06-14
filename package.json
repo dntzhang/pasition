@@ -1,0 +1,27 @@
+{
+  "name": "pasition",
+  "version": "0.1.0",
+  "description": "Path Transition.",
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlloyTeam/pasition.git"
+  },
+  "keywords": [
+    "pasition",
+    "path",
+	"svg",
+	"canvas"
+  ],
+  "author": "dntzhang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AlloyTeam/pasition/issues/new"
+  },
+  "homepage": "http://alloyteam.github.io/pasition"
+}
