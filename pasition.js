@@ -1,5 +1,5 @@
 /*!
- *  pasition v0.1.0 By dntzhang
+ *  pasition v0.1.1 By dntzhang
  *  Github: https://github.com/AlloyTeam/pasition
  *  MIT Licensed.
  */
@@ -293,6 +293,10 @@
     }
 
     pasition.lerp = function (pathA, pathB, t) {
+        return pasition._lerp( pasition.path2shapes(pathA), pasition.path2shapes(pathB), t)
+    }
+
+    pasition._lerp = function (pathA, pathB, t) {
         var lenA = pathA.length,
             lenB = pathB.length,
             pathA = JSON.parse(JSON.stringify(pathA)),
@@ -358,7 +362,7 @@
                 return
             }
 
-            outShape = pasition.lerp(pathA, pathB, easing(dt / time))
+            outShape = pasition._lerp(pathA, pathB, easing(dt / time))
             progress(outShape)
             tickId = requestAnimationFrame(tick)
 
