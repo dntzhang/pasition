@@ -47,7 +47,7 @@ you can get the path from attr d of svg path element.
 
 #### 中文 | [English](https://github.com/AlloyTeam/pasition#english--中文)
 
-## pasition === path transition 
+## pasition
 
 超级小尺寸的Path过渡动画类库
 
