@@ -48,6 +48,26 @@ var shapes  = pasition.lerp(pathA, pathB, 0.5)
 ...
 ```
 
+Currently supported commands:
+
+```
+M/m = moveto
+L/l = lineto
+H/h = horizontal lineto
+V/v = vertical lineto
+C/c = curveto
+S/s = smooth curveto
+A/a = elliptical Arc
+Z/z = closepath
+```
+
+Currently unsupported commands:
+
+```
+Q/q = quadratic Belzier curve
+T/t = smooth quadratic Belzier curveto
+```
+
 ## DEMO
 
 * [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
@@ -88,6 +108,26 @@ path从哪里来？你可以从svg的path的d属性获取。
 var shapes  = pasition.lerp(pathA, pathB, 0.5)
 //拿到shapes之后你可以在任何你想要渲染的地方绘制，如canvas、svg、webgl等
 ...
+```
+
+当前支持支持的SVG Path命令:
+
+```
+M/m = moveto
+L/l = lineto
+H/h = horizontal lineto
+V/v = vertical lineto
+C/c = curveto
+S/s = smooth curveto
+A/a = elliptical Arc
+Z/z = closepath
+```
+
+当前不支持支持的SVG Path命令:
+
+```
+Q/q = quadratic Belzier curve
+T/t = smooth quadratic Belzier curveto
 ```
 
 ## 在线演示
