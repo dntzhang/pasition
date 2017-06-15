@@ -168,26 +168,26 @@
 
                 case 'h':
 
-
-                    current.push([preX, preY, preX, preY, preX, preY, preX,  preY + item[1]])
-                    preY += item[1]
-                    break
-
-                case 'H':
-                    current.push([preX, preY, preX, item[1], preX, item[1], preX, item[1]])
-                    preY = item[1]
-                    break
-
-                case 'v':
-
                     current.push([preX, preY, preX, preY, preX, preY,  preX + item[1], preY])
                     preX += item[1]
                     break
 
-                case 'V':
+
+                case 'H':
                     current.push([preX, preY, item[1], preY, item[1], preY, item[1], preY])
                     preX = item[1]
                     break
+
+                case 'v':
+                    current.push([preX, preY, preX, preY, preX, preY, preX,  preY + item[1]])
+                    preY += item[1]
+                    break
+
+                case 'V':
+                    current.push([preX, preY, preX, item[1], preX, item[1], preX, item[1]])
+                    preY = item[1]
+                    break
+
 
                 case 'C':
 

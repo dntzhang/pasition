@@ -188,6 +188,7 @@
 			margin-top:100px ;
 		}
 
+
 		@media only screen and (max-width: 500px) {
 
 		}
@@ -208,14 +209,13 @@
         C123.3,42.9,107.7,41.3,102.3,40.9 z"></path>
 	</svg>
 	<svg height="64" version="1.1" width="64" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><desc>Created with Snap</desc><defs></defs><g>
-
-		<path id="pathC" d="M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z"></path>
-
+		<path id="pathC" d="M48,5L42.38,18.26L28,19.48L38.92,28.94L35.64,43L48,35.54L48,35.54L60.36,43L57.08,28.94L68,19.48L53.62,18.26Z"></path>
+		<path id="pathD" d="M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z"></path>
 
 	</g></svg>
 </div>
-<div id="container">
-	<canvas id="canvas" width="150" height="180" ></canvas>
+<div id="container" >
+	<canvas id="canvas" width="150" height="180"></canvas>
 </div>
 <div class="info">
 	<p class="description">
@@ -260,7 +260,8 @@
 
 	var pathA =  document.querySelector('#pathA').getAttribute('d'),
 			pathB=	document.querySelector('#pathB').getAttribute('d'),
-			pathC=	document.querySelector('#pathC').getAttribute('d')
+			pathC=	document.querySelector('#pathC').getAttribute('d'),
+			pathD=	document.querySelector('#pathD').getAttribute('d')
 
 
 	var canvas = document.getElementById('canvas'),
@@ -293,7 +294,7 @@
 	}
 
 
-	animate([pathA,pathB,pathC],0,1)
+	animate([pathA,pathB,pathC,pathD],0,1)
 
 </script>
 
