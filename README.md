@@ -40,14 +40,6 @@ pasition.animate(pathA, pathB, time, {
 
 you can get the path from attr d of svg path element.
 
-you can get the progressing shapes by `pasition.lerp`:
-
-```js
-var shapes  = pasition.lerp(pathA, pathB, 0.5)
-//render shapes in canvas ,svg or anywhere you want
-...
-```
-
 Currently supported commands:
 
 ```
@@ -66,6 +58,14 @@ Currently unsupported commands:
 ```
 Q/q = quadratic Belzier curve
 T/t = smooth quadratic Belzier curveto
+```
+
+you can get the progressing shapes by `pasition.lerp`:
+
+```js
+var shapes  = pasition.lerp(pathA, pathB, 0.5)
+//render shapes in canvas ,svg or anywhere you want
+...
 ```
 
 ## DEMO
@@ -102,14 +102,6 @@ pasition.animate(pathA, pathB, time, {
 
 path从哪里来？你可以从svg的path的d属性获取。
 
-你可以通过 `pasition.lerp` 方法拿到插值中的shapes:
-
-```js
-var shapes  = pasition.lerp(pathA, pathB, 0.5)
-//拿到shapes之后你可以在任何你想要渲染的地方绘制，如canvas、svg、webgl等
-...
-```
-
 当前支持支持的SVG Path命令:
 
 ```
@@ -128,6 +120,14 @@ Z/z = closepath
 ```
 Q/q = quadratic Belzier curve
 T/t = smooth quadratic Belzier curveto
+```
+
+你可以通过 `pasition.lerp` 方法拿到插值中的shapes:
+
+```js
+var shapes  = pasition.lerp(pathA, pathB, 0.5)
+//拿到shapes之后你可以在任何你想要渲染的地方绘制，如canvas、svg、webgl等
+...
 ```
 
 ## 在线演示
