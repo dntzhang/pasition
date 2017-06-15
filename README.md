@@ -25,7 +25,7 @@ npm install pasition
 
 or get js by the cdn address:
 
-[https://unpkg.com/pasition@0.2.0/dist/pasition.js](https://unpkg.com/pasition@0.2.0/dist/pasition.js)
+[https://unpkg.com/pasition@0.2.1/dist/pasition.js](https://unpkg.com/pasition@0.2.1/dist/pasition.js)
 
 ## Usage
 
@@ -86,7 +86,7 @@ npm install pasition
 
 CDN地址下载下来使用:
 
-[https://unpkg.com/pasition@0.2.0/dist/pasition.js](https://unpkg.com/pasition@0.2.0/dist/pasition.js)
+[https://unpkg.com/pasition@0.2.1/dist/pasition.js](https://unpkg.com/pasition@0.2.1/dist/pasition.js)
 
 ## 使用指南
 

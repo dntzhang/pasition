@@ -1,5 +1,5 @@
 /**
- * pasition v0.2.0 By dntzhang
+ * pasition v0.2.1 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -295,10 +295,6 @@ pasition.lerpPoints = function (x1, y1, x2, y2, t) {
 
 pasition.q2b = function (x1, y1, x2, y2, x3, y3) {};
 
-pasition.l2b = function (x1, y1, x2, y2) {};
-
-pasition.p2b = function (x1, y1) {};
-
 pasition.path2shapes = function (path) {
     //https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths
     //M = moveto
@@ -318,7 +314,9 @@ pasition.path2shapes = function (path) {
         j = 0,
         len = cmds.length,
         shapes = [],
-        current = null;
+        current = null,
+        closeX,
+        closeY;
 
     for (; j < len; j++) {
         var item = cmds[j];
@@ -499,10 +497,16 @@ pasition.path2shapes = function (path) {
             //    preY += item[2]
             //    break
 
-            //case 'Z':
-            //    break
-            //case 'z':
-            //    break
+            case 'Z':
+                closeX = current[0][0];
+                closeY = current[0][1];
+                current.push([preX, preY, closeX, closeY, closeX, closeY, closeX, closeY]);
+                break;
+            case 'z':
+                closeX = current[0][0];
+                closeY = current[0][1];
+                current.push([preX, preY, closeX, closeY, closeX, closeY, closeX, closeY]);
+                break;
         }
     }
 

@@ -46,7 +46,9 @@ pasition.path2shapes = function (path) {
         j = 0,
         len = cmds.length,
         shapes = [],
-        current = null
+        current = null,
+        closeX,
+        closeY
 
 
     for (; j < len; j++) {
@@ -239,10 +241,16 @@ pasition.path2shapes = function (path) {
             //    preY += item[2]
             //    break
 
-            //case 'Z':
-            //    break
-            //case 'z':
-            //    break
+            case 'Z':
+                closeX = current[0][0]
+                closeY = current[0][1]
+                current.push([preX, preY, closeX, closeY, closeX, closeY, closeX, closeY])
+                break
+            case 'z':
+                closeX = current[0][0]
+                closeY = current[0][1]
+                current.push([preX, preY, closeX, closeY, closeX, closeY, closeX, closeY])
+                break
         }
     }
 
