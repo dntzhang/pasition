@@ -27,18 +27,6 @@ pasition.q2b = function (x1, y1, x2, y2, x3, y3) {
 
 }
 
-pasition.l2b = function (x1, y1, x2, y2) {
-
-}
-
-pasition.p2b = function (x1, y1) {
-
-}
-
-
-
-
-
 pasition.path2shapes = function (path) {
     //https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths
     //M = moveto
