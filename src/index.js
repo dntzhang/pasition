@@ -24,7 +24,7 @@ pasition.lerpPoints = function (x1, y1, x2, y2, t) {
 }
 
 pasition.q2b = function (x1, y1, x2, y2, x3, y3) {
-
+    return [x1, y1, (x1 + 2 * x2) / 3, (y1 + 2 * y2) / 3, (x3 + 2 * x2 )/ 3, (y3 + 2 * y2) / 3, x3, y3]
 }
 
 pasition.path2shapes = function (path) {
@@ -48,7 +48,9 @@ pasition.path2shapes = function (path) {
         shapes = [],
         current = null,
         closeX,
-        closeY
+        closeY,
+        preCX,
+        preCY
 
 
     for (; j < len; j++) {
@@ -118,15 +120,11 @@ pasition.path2shapes = function (path) {
                 preY = item[6]
                 break
             case 'S':
-                if(preItem[0] ==='C'){
-                    current.push([preX, preY, preX + preX - preItem[3], preY + preY - preItem[4], item[1], item[2], item[3], item[4]])
-                }else if(preItem[0] ==='c'){
+                if(preItem[0] ==='C'||preItem[0] ==='c'){
                     current.push([preX, preY, preX + preItem[5] - preItem[3], preY +  preItem[6] - preItem[4], item[1], item[2], item[3], item[4]])
-                }else if(preItem[0] ==='S'){
-                    current.push([preX, preY, preX + preX - preItem[1], preY + preY - preItem[2], item[1], item[2], item[3], item[4]])
-
-                }else if(preItem[0] ==='s'){
+                }else if(preItem[0] ==='S'||preItem[0] ==='s'){
                     current.push([preX, preY, preX+  preItem[3] - preItem[1] ,preY+ preItem[4] - preItem[2], item[1], item[2], item[3], item[4]])
+
                 }
                 preX = item[3]
                 preY = item[4]
@@ -138,17 +136,11 @@ pasition.path2shapes = function (path) {
                 preY = preY + item[6]
                 break
             case 's':
-                if(preItem[0] ==='C'){
-                    current.push([preX, preY, preX+ preX - preItem[3] ,preY+ preY - preItem[4],preX+ item[1],preY+ item[2], preX+item[3],preY+ item[4]])
+                if(preItem[0] ==='C'||preItem[0] ==='c'){
 
-
-                }else if(preItem[0] ==='c'){
                     current.push([preX, preY, preX+  preItem[5] - preItem[3] ,preY+ preItem[6] - preItem[4],preX+ item[1],preY+ item[2], preX+item[3],preY+ item[4]])
 
-                }else if(preItem[0] ==='S' ){
-                    current.push([preX, preY, preX+  preItem[3] - preItem[1] ,preY+ preItem[4] - preItem[2],preX+ item[1],preY+ item[2], preX+item[3],preY+ item[4]])
-
-                }else if(preItem[0] ==='s'){
+                }else if(preItem[0] ==='S'||preItem[0] ==='s' ){
                     current.push([preX, preY, preX+  preItem[3] - preItem[1] ,preY+ preItem[4] - preItem[2],preX+ item[1],preY+ item[2], preX+item[3],preY+ item[4]])
                 }
 
@@ -217,29 +209,53 @@ pasition.path2shapes = function (path) {
                 preY = lastCurve.y
 
                 break
-            //case 'Q':
-            //    preX = item[3]
-            //    preY = item[4]
-            //    ctx.quadraticCurveTo( item[1], item[2],preX,preY)
-            //    break
-            //case 'T':
-            //    ctx.quadraticCurveTo( preX+ preX - preItem[1], preY+ preY - preItem[2],item[1], item[2])
-            //    preX = item[1]
-            //    preY = item[2]
-            //    break
+            case 'Q':
+                current.push(pasition.q2b(preX,preY, item[1], item[2], item[3], item[4]))
+                preX = item[3]
+                preY = item[4]
 
-            //case 'q':
-            //
-            //    ctx.quadraticCurveTo( preX+item[1], preY+item[2],item[3]+preX,item[4]+preY)
-            //    preX += item[3]
-            //    preY += item[4]
-            //    break
-            //case 't':
-            //
-            //    ctx.quadraticCurveTo(preX+ preX+ preX - preItem[1], preY+ preY+ preY - preItem[2],preX+ item[1],   preY+item[2])
-            //    preX += item[1]
-            //    preY += item[2]
-            //    break
+                break
+            case 'q':
+                current.push(pasition.q2b(preX,preY,preX+item[1], preY+item[2],item[3]+preX,item[4]+preY))
+                preX += item[3]
+                preY += item[4]
+                break
+
+            case 'T':
+
+                if(preItem[0] ==='Q'|| preItem[0] ==='q') {
+                    preCX = preX + preItem[3] - preItem[1]
+                    preCY = preY + preItem[4] - preItem[2]
+                    current.push(pasition.q2b(preX, preY, preCX, preCY, item[1], item[2]))
+
+
+                }else if(preItem[0] ==='T'|| preItem[0] ==='t' ) {
+                    current.push(pasition.q2b(preX, preY, preX + preX - preCX, preY + preY - preCY, item[1], item[2]))
+                    preCX = preX + preX - preCX
+                    preCY = preY + preY - preCY
+                }
+
+                preX = item[1]
+                preY = item[2]
+                break
+
+
+            case 't':
+                if(preItem[0] ==='Q'|| preItem[0] ==='q') {
+                    preCX = preX + preItem[3] - preItem[1]
+                    preCY = preY + preItem[4] - preItem[2]
+                    current.push(pasition.q2b(preX, preY, preCX, preCY,preX+ item[1],preY+ item[2]))
+
+
+                }else if(preItem[0] ==='T'|| preItem[0] ==='t' ) {
+                    current.push(pasition.q2b(preX, preY, preX + preX - preCX, preY + preY - preCY, preX+item[1], preY+item[2]))
+                    preCX = preX + preX - preCX
+                    preCY = preY + preY - preCY
+                }
+
+                preX += item[1]
+                preY += item[2]
+                break
 
             case 'Z':
                 closeX = current[0][0]

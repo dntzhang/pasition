@@ -25,7 +25,7 @@ npm install pasition
 
 or get js by the cdn address:
 
-[https://unpkg.com/pasition@0.2.1/dist/pasition.js](https://unpkg.com/pasition@0.2.1/dist/pasition.js)
+[https://unpkg.com/pasition@0.3.0/dist/pasition.js](https://unpkg.com/pasition@0.3.0/dist/pasition.js)
 
 ## Usage
 
@@ -40,7 +40,7 @@ pasition.animate(pathA, pathB, time, {
 
 you can get the path from attr d of svg path element.
 
-Currently supported commands:
+Supported All the svg path commands:
 
 ```
 M/m = moveto
@@ -51,13 +51,24 @@ C/c = curveto
 S/s = smooth curveto
 A/a = elliptical Arc
 Z/z = closepath
-```
-
-Currently unsupported commands:
-
-```
 Q/q = quadratic Belzier curve
 T/t = smooth quadratic Belzier curveto
+```
+
+Example:
+
+```
+pasition.animate(
+        'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
+        'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
+        1000,{
+            easing : function(){ },
+            begin:function(shapes){ },
+            progress : function(shapes){
+                //render you shape to svg or canvas or webgl
+            },
+            end : function(shapes){ }
+        });
 ```
 
 you can get the progressing shapes by `pasition.lerp`:
@@ -86,7 +97,7 @@ npm install pasition
 
 CDN地址下载下来使用:
 
-[https://unpkg.com/pasition@0.2.1/dist/pasition.js](https://unpkg.com/pasition@0.2.1/dist/pasition.js)
+[https://unpkg.com/pasition@0.3.0/dist/pasition.js](https://unpkg.com/pasition@0.3.0/dist/pasition.js)
 
 ## 使用指南
 
@@ -102,7 +113,7 @@ pasition.animate(pathA, pathB, time, {
 
 path从哪里来？你可以从svg的path的d属性获取。
 
-当前支持支持的SVG Path命令:
+支持所有的SVG Path命令:
 
 ```
 M/m = moveto
@@ -113,13 +124,24 @@ C/c = curveto
 S/s = smooth curveto
 A/a = elliptical Arc
 Z/z = closepath
-```
-
-当前不支持支持的SVG Path命令:
-
-```
 Q/q = quadratic Belzier curve
 T/t = smooth quadratic Belzier curveto
+```
+
+举个例子:
+
+```
+pasition.animate(
+        'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
+        'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
+        1000,{
+            easing : function(){ },
+            begin:function(shapes){ },
+            progress : function(shapes){
+                //你可以在任何你想绘制的地方绘制,如canvas、svg、webgl
+            },
+            end : function(shapes){ }
+        });
 ```
 
 你可以通过 `pasition.lerp` 方法拿到插值中的shapes:
