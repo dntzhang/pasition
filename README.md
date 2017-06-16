@@ -57,7 +57,7 @@ T/t = smooth quadratic Belzier curveto
 
 Example:
 
-```
+```js
 pasition.animate(
         'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
         'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
@@ -130,7 +130,7 @@ T/t = smooth quadratic Belzier curveto
 
 举个例子:
 
-```
+```js
 pasition.animate(
         'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
         'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
