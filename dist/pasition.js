@@ -1,5 +1,5 @@
 /**
- * pasition v0.3.0 By dntzhang
+ * pasition v0.4.0 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -276,6 +276,144 @@ function parseValues(args) {
     return numbers ? numbers.map(Number) : [];
 }
 
+function curveBox(curve) {
+    var x1 = curve[0],
+        x2 = curve[2],
+        x3 = curve[4],
+        x4 = curve[6],
+        y1 = curve[1],
+        y2 = curve[3],
+        y3 = curve[5],
+        y4 = curve[7];
+    return [Math.min(x1, x2, x3, x4), Math.min(y1, y2, y3, y4), Math.max(x1, x2, x3, x4), Math.max(y1, y2, y3, y4)];
+}
+
+function shapeBox(shape) {
+    var minX = shape[0][0],
+        minY = shape[0][1],
+        maxX = minX,
+        maxY = minY;
+    shape.forEach(function (curve) {
+        var x1 = curve[0],
+            x2 = curve[2],
+            x3 = curve[4],
+            x4 = curve[6],
+            y1 = curve[1],
+            y2 = curve[3],
+            y3 = curve[5],
+            y4 = curve[7];
+
+        minX = Math.min(minX, x1, x2, x3, x4);
+        minY = Math.min(minY, y1, y2, y3, y4);
+        maxX = Math.max(maxX, x1, x2, x3, x4);
+        maxY = Math.max(maxY, y1, y2, y3, y4);
+    });
+
+    return [minX, minY, maxX, maxY];
+}
+
+function boxDistance(boxA, boxB) {
+    return Math.sqrt(Math.pow(boxA[0] - boxB[0], 2) + Math.pow(boxA[1] - boxB[1], 2)) + Math.sqrt(Math.pow(boxA[2] - boxB[2], 2) + Math.pow(boxA[3] - boxB[3], 2));
+}
+
+function sortCurves(curvesA, curvesB) {
+
+    var arrList = permuteCurveNum(curvesA.length);
+
+    var list = [];
+    arrList.forEach(function (arr) {
+        var distance = 0;
+        arr.forEach(function (index) {
+            distance += boxDistance(curveBox(curvesA[index]), curveBox(curvesB[index]));
+        });
+        list.push({ index: arr, distance: distance });
+    });
+
+    list.sort(function (a, b) {
+        return a.distance - b.distance;
+    });
+
+    var result = [];
+
+    list[0].index.forEach(function (index) {
+        result.push(curvesA[index]);
+    });
+
+    return result;
+}
+
+function sort(pathA, pathB) {
+
+    var arrList = permuteNum(pathA.length);
+
+    var list = [];
+    arrList.forEach(function (arr) {
+        var distance = 0;
+        arr.forEach(function (index) {
+            distance += boxDistance(shapeBox(pathA[index]), shapeBox(pathB[index]));
+        });
+        list.push({ index: arr, distance: distance });
+    });
+
+    list.sort(function (a, b) {
+        return a.distance - b.distance;
+    });
+
+    var result = [];
+
+    list[0].index.forEach(function (index) {
+        result.push(pathA[index]);
+    });
+
+    return result;
+}
+
+function permuteCurveNum(num) {
+    var arr = [];
+
+    for (var i = 0; i < num; i++) {
+        var indexArr = [];
+        for (var j = 0; j < num; j++) {
+            var index = j + i;
+            if (index > num - 1) index -= num;
+            indexArr[index] = j;
+        }
+
+        arr.push(indexArr);
+    }
+
+    return arr;
+}
+
+function permuteNum(num) {
+    var arr = [];
+    for (var i = 0; i < num; i++) {
+        arr.push(i);
+    }
+
+    return permute(arr);
+}
+
+function permute(input) {
+    var permArr = [],
+        usedChars = [];
+    function main(input) {
+        var i, ch;
+        for (i = 0; i < input.length; i++) {
+            ch = input.splice(i, 1)[0];
+            usedChars.push(ch);
+            if (input.length == 0) {
+                permArr.push(usedChars.slice());
+            }
+            main(input);
+            input.splice(i, 0, ch);
+            usedChars.pop();
+        }
+        return permArr;
+    }
+    return main(input);
+}
+
 var pasition = {};
 pasition.parser = parse;
 
@@ -530,9 +668,66 @@ pasition.path2shapes = function (path) {
 };
 
 pasition._upCurves = function (curves, count) {
-    var i = 0;
+    var i = 0,
+        index = 0,
+        len = curves.length;
     for (; i < count; i++) {
-        curves.push(curves[curves.length - 1].slice(0));
+        curves.push(curves[index].slice(0));
+        index++;
+        if (index > len - 1) {
+            index -= len;
+        }
+    }
+};
+
+function split(x1, y1, x2, y2, x3, y3, x4, y4, t) {
+    return {
+        left: _split(x1, y1, x2, y2, x3, y3, x4, y4, t),
+        right: _split(x4, y4, x3, y3, x2, y2, x1, y1, 1 - t, true)
+    };
+}
+
+function _split(x1, y1, x2, y2, x3, y3, x4, y4, t, reverse) {
+
+    var x12 = (x2 - x1) * t + x1;
+    var y12 = (y2 - y1) * t + y1;
+
+    var x23 = (x3 - x2) * t + x2;
+    var y23 = (y3 - y2) * t + y2;
+
+    var x34 = (x4 - x3) * t + x3;
+    var y34 = (y4 - y3) * t + y3;
+
+    var x123 = (x23 - x12) * t + x12;
+    var y123 = (y23 - y12) * t + y12;
+
+    var x234 = (x34 - x23) * t + x23;
+    var y234 = (y34 - y23) * t + y23;
+
+    var x1234 = (x234 - x123) * t + x123;
+    var y1234 = (y234 - y123) * t + y123;
+
+    if (reverse) {
+        return [x1234, y1234, x123, y123, x12, y12, x1, y1];
+    }
+    return [x1, y1, x12, y12, x123, y123, x1234, y1234];
+}
+
+pasition._splitCurves = function (curves, count) {
+    var i = 0,
+        index = 0;
+
+    console.log(JSON.stringify(curves));
+    for (; i < count; i++) {
+        var curve = curves[index];
+        var cs = split(curve[0], curve[1], curve[2], curve[3], curve[4], curve[5], curve[6], curve[7], 0.5);
+        curves.splice(index, 1);
+        curves.splice(index, 0, cs.left, cs.right);
+
+        index += 2;
+        if (index >= curves.length - 1) {
+            index = 0;
+        }
     }
 };
 
@@ -554,7 +749,8 @@ pasition.lerp = function (pathA, pathB, t) {
     return pasition._lerp(pasition.path2shapes(pathA), pasition.path2shapes(pathB), t);
 };
 
-pasition._lerp = function (pathA, pathB, t) {
+pasition._preprocessing = function (pathA, pathB) {
+
     var lenA = pathA.length,
         lenB = pathB.length,
         pathA = JSON.parse(JSON.stringify(pathA)),
@@ -566,17 +762,29 @@ pasition._lerp = function (pathA, pathB, t) {
         pasition._upShapes(pathA, lenB - lenA);
     }
 
+    pathA = sort(pathA, pathB);
+
     pathA.forEach(function (curves, index) {
 
         var lenA = curves.length,
             lenB = pathB[index].length;
 
         if (lenA > lenB) {
-            pasition._upCurves(pathB[index], lenA - lenB);
+
+            pasition._splitCurves(pathB[index], lenA - lenB);
         } else if (lenA < lenB) {
             pasition._upCurves(curves, lenB - lenA);
         }
     });
+
+    pathA.forEach(function (curves, index) {
+        pathA[index] = sortCurves(curves, pathB[index]);
+    });
+
+    return [pathA, pathB];
+};
+
+pasition._lerp = function (pathA, pathB, t) {
 
     var shapes = [];
     pathA.forEach(function (curves, index) {
@@ -592,6 +800,7 @@ pasition._lerp = function (pathA, pathB, t) {
 pasition.animate = function (pathA, pathB, time, option) {
     pathA = pasition.path2shapes(pathA);
     pathB = pasition.path2shapes(pathB);
+    var pathArr = pasition._preprocessing(pathA, pathB);
 
     var beginTime = new Date(),
         end = option.end || function () {},
@@ -615,7 +824,7 @@ pasition.animate = function (pathA, pathB, time, option) {
             return;
         }
 
-        outShape = pasition._lerp(pathA, pathB, easing(dt / time));
+        outShape = pasition._lerp(pathArr[0], pathArr[1], easing(dt / time));
         progress(outShape);
         tickId = requestAnimationFrame(tick);
     };
