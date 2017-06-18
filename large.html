@@ -25,7 +25,7 @@
 
 	<style>
 		body {
-			background-color: #1e1d23;
+			background-color: black;
 			/*opacity: 0;*/
 			display: -webkit-box;
 			display: -ms-flexbox;
@@ -190,7 +190,28 @@
 
 
 		@media only screen and (max-width: 500px) {
+			canvas{
+				width: 100%;
+			}
+		}
 
+		.button {
+			/*opacity: 0;*/
+			position: relative;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			width: 180px;
+			height: 60px;
+			text-decoration: none;
+			text-align: center;
 		}
 	</style>
 </head>
@@ -214,36 +235,19 @@
 	</svg>
 
 </div>
+<a class="button blue" href="javascript:" onclick="toogleStroke()" style="position: fixed;bottom: 0;right: 0;">
+	<svg viewBox="0 0 180 60">
+		<path d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z"></path>
+	</svg>
+	<span id="mode">Stroke</span>
+</a>
 <div id="container" >
-	<canvas id="canvas" width="1800" height="1800"></canvas>
-</div>
-<div class="info">
-	<p class="description">
-		Pasition - 1kb javascript Path Transition library.
-	</p>
-	<div class="links">
-
-		<a class="button green" href="https://github.com/AlloyTeam/pasition" target="_blank">
-			<svg viewBox="0 0 180 60">
-				<path d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z"></path>
-			</svg>
-			<span>GitHub</span>
-		</a>
-
-		<a class="button blue" href="https://alloyteam.github.io/pasition/demo.html" target="_blank">
-			<svg viewBox="0 0 180 60">
-				<path d="M10,10 C10,10 50,9.98999977 90,9.98999977 C130,9.98999977 170,10 170,10 C170,10 170.009995,20 170.009995,30 C170.009995,40 170,50 170,50 C170,50 130,50.0099983 90,50.0099983 C50,50.0099983 10,50 10,50 C10,50 9.98999977,40 9.98999977,30 C9.98999977,20 10,10 10,10 Z"></path>
-			</svg>
-			<span>Stroke Demo</span>
-		</a>
-	</div>
-	<p class="credits">
-		v<span class="version">0.1.1</span> © <span class="date">2017</span> AlloyTeam.com
-	</p>
+	<canvas id="canvas" width="800" height="500"></canvas>
 </div>
 
 <script src="./dist/pasition.js"></script>
 <script>
+	var stroke = false
 	function renderCurve(context,points,color){
 		context.beginPath();
 		context.strokeStyle = color||'black';
@@ -265,6 +269,11 @@
 		context.fill();
 	}
 
+	function toogleStroke() {
+		stroke = !stroke
+		document.querySelector('#mode').innerHTML = stroke ? 'Stroke' : 'Fill'
+	}
+
 	var pathA =  document.querySelector('#pathA').getAttribute('d'),
 			pathB=	document.querySelector('#pathB').getAttribute('d'),
 			pathC=	document.querySelector('#pathC').getAttribute('d'),
@@ -278,15 +287,18 @@
 
 
 	function animate(arr,indexA,indexB){
-		pasition.animate(arr[indexA],arr[indexB],1000,{
+		pasition.animate(arr[indexA],arr[indexB],1500,{
 			progress:function(shapes){
 				context.clearRect(0, 0, canvas.width, canvas.height)
 				shapes.forEach(function(curves){
-					renderShapes(context,curves,"#006DF0")
-
-//					curves.forEach(function(curve){
-//						renderCurve(context,curve,"#006DF0")
-//					})
+					//
+					if(stroke) {
+						curves.forEach(function (curve) {
+							renderCurve(context, curve, "#006DF0")
+						})
+					}else{
+						renderShapes(context,curves,"#006DF0")
+					}
 				})
 			},
 			end:function(){

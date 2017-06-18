@@ -781,7 +781,7 @@ pasition._preprocessing = function (pathA, pathB) {
 
             pasition._splitCurves(pathB[index], lenA - lenB);
         } else if (lenA < lenB) {
-            pasition._upCurves(curves, lenB - lenA);
+            pasition._splitCurves(curves, lenB - lenA);
         }
     });
 
