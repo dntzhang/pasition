@@ -276,18 +276,6 @@ function parseValues(args) {
     return numbers ? numbers.map(Number) : [];
 }
 
-function curveBox(curve) {
-    var x1 = curve[0],
-        x2 = curve[2],
-        x3 = curve[4],
-        x4 = curve[6],
-        y1 = curve[1],
-        y2 = curve[3],
-        y3 = curve[5],
-        y4 = curve[7];
-    return [Math.min(x1, x2, x3, x4), Math.min(y1, y2, y3, y4), Math.max(x1, x2, x3, x4), Math.max(y1, y2, y3, y4)];
-}
-
 function shapeBox(shape) {
     var minX = shape[0][0],
         minY = shape[0][1],
@@ -316,6 +304,27 @@ function boxDistance(boxA, boxB) {
     return Math.sqrt(Math.pow(boxA[0] - boxB[0], 2) + Math.pow(boxA[1] - boxB[1], 2)) + Math.sqrt(Math.pow(boxA[2] - boxB[2], 2) + Math.pow(boxA[3] - boxB[3], 2));
 }
 
+function curveDistance(curveA, curveB) {
+    var x1 = curveA[0],
+        x2 = curveA[2],
+        x3 = curveA[4],
+        x4 = curveA[6],
+        y1 = curveA[1],
+        y2 = curveA[3],
+        y3 = curveA[5],
+        y4 = curveA[7],
+        xb1 = curveB[0],
+        xb2 = curveB[2],
+        xb3 = curveB[4],
+        xb4 = curveB[6],
+        yb1 = curveB[1],
+        yb2 = curveB[3],
+        yb3 = curveB[5],
+        yb4 = curveB[7];
+
+    return Math.sqrt(Math.pow(xb1 - x1, 2) + Math.pow(yb1 - y1, 2)) + Math.sqrt(Math.pow(xb2 - x2, 2) + Math.pow(yb2 - y2, 2)) + Math.sqrt(Math.pow(xb3 - x3, 2) + Math.pow(yb3 - y3, 2)) + Math.sqrt(Math.pow(xb4 - x4, 2) + Math.pow(yb4 - y4, 2));
+}
+
 function sortCurves(curvesA, curvesB) {
 
     var arrList = permuteCurveNum(curvesA.length);
@@ -324,7 +333,7 @@ function sortCurves(curvesA, curvesB) {
     arrList.forEach(function (arr) {
         var distance = 0;
         arr.forEach(function (index) {
-            distance += boxDistance(curveBox(curvesA[index]), curveBox(curvesB[index]));
+            distance += curveDistance(curvesA[index], curvesB[index]);
         });
         list.push({ index: arr, distance: distance });
     });
@@ -717,7 +726,6 @@ pasition._splitCurves = function (curves, count) {
     var i = 0,
         index = 0;
 
-    console.log(JSON.stringify(curves));
     for (; i < count; i++) {
         var curve = curves[index];
         var cs = split(curve[0], curve[1], curve[2], curve[3], curve[4], curve[5], curve[6], curve[7], 0.5);

@@ -327,7 +327,6 @@ pasition._splitCurves = function (curves, count) {
     var i = 0,
         index = 0
 
-    console.log(JSON.stringify(curves))
     for (; i < count; i++) {
        let curve =  curves[index]
        let cs = split(curve[0],curve[1],curve[2],curve[3],curve[4],curve[5],curve[6],curve[7],0.5)

@@ -1,17 +1,4 @@
 
-
-function curveBox(curve) {
-    let x1 = curve[0],
-        x2 = curve[2],
-        x3 = curve[4],
-        x4 = curve[6],
-        y1 = curve[1],
-        y2 = curve[3],
-        y3 = curve[5],
-        y4 = curve[7]
-    return [Math.min(x1, x2, x3, x4), Math.min(y1, y2, y3, y4), Math.max(x1, x2, x3, x4), Math.max(y1, y2, y3, y4)]
-}
-
 function shapeBox(shape) {
     let minX=shape[0][0], minY=shape[0][1], maxX=minX, maxY=minY
     shape.forEach(curve=> {
@@ -39,6 +26,30 @@ function boxDistance(boxA, boxB){
 
 }
 
+function curveDistance(curveA,curveB) {
+    let x1 = curveA[0],
+        x2 = curveA[2],
+        x3 = curveA[4],
+        x4 = curveA[6],
+        y1 = curveA[1],
+        y2 = curveA[3],
+        y3 = curveA[5],
+        y4 = curveA[7],
+
+        xb1 = curveB[0],
+        xb2 = curveB[2],
+        xb3 = curveB[4],
+        xb4 = curveB[6],
+        yb1 = curveB[1],
+        yb2 = curveB[3],
+        yb3 = curveB[5],
+        yb4 = curveB[7]
+
+    return Math.sqrt(Math.pow(xb1 - x1, 2) + Math.pow(yb1 - y1, 2)) +
+        Math.sqrt(Math.pow(xb2 - x2, 2) + Math.pow(yb2 - y2, 2)) +
+        Math.sqrt(Math.pow(xb3 - x3, 2) + Math.pow(yb3 - y3, 2)) +
+        Math.sqrt(Math.pow(xb4 - x4, 2) + Math.pow(yb4 - y4, 2))
+}
 
 function sortCurves(curvesA, curvesB){
 
@@ -48,7 +59,7 @@ function sortCurves(curvesA, curvesB){
     arrList.forEach(arr => {
         let distance = 0
         arr.forEach(index=> {
-            distance += boxDistance(curveBox(curvesA[index]), curveBox(curvesB[index]))
+            distance += curveDistance(curvesA[index], curvesB[index])
         })
         list.push({index: arr, distance: distance})
     })
