@@ -16,6 +16,11 @@ pasition === path transition
 #### English | [﻿中文](https://github.com/AlloyTeam/pasition#中文--english)
 
 
+## DEMO
+
+* [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
+* [https://alloyteam.github.io/pasition/demo.html](https://alloyteam.github.io/pasition/demo.html)
+* [https://alloyteam.github.io/pasition/large.html](https://alloyteam.github.io/pasition/large.html)
 
 ## Install
 
@@ -79,9 +84,6 @@ var shapes  = pasition.lerp(pathA, pathB, 0.5)
 ...
 ```
 
-## DEMO
-
-* [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
 
 #### 中文 | [English](https://github.com/AlloyTeam/pasition#english--中文)
 
@@ -155,7 +157,8 @@ var shapes  = pasition.lerp(pathA, pathB, 0.5)
 ## 在线演示
 
 * [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
-
+* [https://alloyteam.github.io/pasition/demo.html](https://alloyteam.github.io/pasition/demo.html)
+* [https://alloyteam.github.io/pasition/large.html](https://alloyteam.github.io/pasition/large.html)
 
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
