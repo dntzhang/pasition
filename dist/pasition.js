@@ -744,7 +744,6 @@ pasition._upShapes = function (shapes, count) {
         var newShape = [];
 
         shape.forEach(function (curve) {
-
             newShape.push(curve.slice(0));
         });
         shapes.push(newShape);
@@ -752,6 +751,23 @@ pasition._upShapes = function (shapes, count) {
 
     for (var i = 0; i < count; i++) {
         _loop(i);
+    }
+};
+
+pasition._subShapes = function (pathA, pathB, count) {
+    var _loop2 = function _loop2(i) {
+        var shape = pathB[pathB.length - 1];
+        var newShape = [];
+
+        shape.forEach(function () {
+            newShape.push(shape[0].slice(0));
+        });
+
+        pathB.push(newShape);
+    };
+
+    for (var i = 0; i < count; i++) {
+        _loop2(i);
     }
 };
 
@@ -767,7 +783,7 @@ pasition._preprocessing = function (pathA, pathB) {
         clonePathB = JSON.parse(JSON.stringify(pathB));
 
     if (lenA > lenB) {
-        pasition._upShapes(clonePathB, lenA - lenB);
+        pasition._subShapes(clonePathA, clonePathB, lenA - lenB);
     } else if (lenA < lenB) {
         pasition._upShapes(clonePathA, lenB - lenA);
     }

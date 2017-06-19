@@ -344,11 +344,22 @@ pasition._upShapes = function (shapes, count) {
         let newShape = []
 
         shape.forEach(function (curve) {
-
             newShape.push(curve.slice(0))
-
         })
         shapes.push(newShape)
+    }
+}
+
+pasition._subShapes= function (pathA, pathB, count) {
+    for (let i = 0; i < count; i++) {
+        let shape = pathB[pathB.length - 1]
+        let newShape = []
+
+        shape.forEach(function () {
+            newShape.push(shape[0].slice(0))
+        })
+
+        pathB.push(newShape)
     }
 }
 
@@ -364,7 +375,7 @@ pasition._preprocessing = function(pathA, pathB){
         clonePathB = JSON.parse(JSON.stringify(pathB))
 
     if (lenA > lenB) {
-        pasition._upShapes(clonePathB, lenA - lenB)
+        pasition._subShapes(clonePathA, clonePathB, lenA-lenB  )
     } else if (lenA < lenB) {
         pasition._upShapes(clonePathA, lenB - lenA)
     }
