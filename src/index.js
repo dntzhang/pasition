@@ -440,14 +440,14 @@ pasition.animate = function (option) {
         let dt = new Date() - beginTime
         if (dt >= time) {
             outShape = pathB
-            progress(outShape)
+            progress(outShape, 1)
             end(outShape)
             cancelAnimationFrame(tickId)
             return
         }
-
-        outShape = pasition._lerp(pathArr[0], pathArr[1], easing(dt / time))
-        progress(outShape)
+        let percent = easing(dt / time)
+        outShape = pasition._lerp(pathArr[0], pathArr[1], percent)
+        progress(outShape, percent)
         tickId = requestAnimationFrame(tick)
 
     }

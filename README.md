@@ -6,7 +6,7 @@
 pasition === path transition
 </h3>
 <p align="center">
-Path Transition library for making cool animation.  (1kb) 
+Path Transition library for making cool animation.
 </p>
 <p align="center">
   <a href="https://travis-ci.org/AlloyTeam/omi"><img src="https://travis-ci.org/AlloyTeam/omi.svg"></a>
@@ -30,7 +30,7 @@ npm install pasition
 
 or get js by the cdn address:
 
-[https://unpkg.com/pasition@0.5.0/dist/pasition.js](https://unpkg.com/pasition@0.5.0/dist/pasition.js)
+[https://unpkg.com/pasition@0.5.1/dist/pasition.js](https://unpkg.com/pasition@0.5.1/dist/pasition.js)
 
 ## Usage
 
@@ -40,9 +40,9 @@ pasition.animate({
     to : toPath,
     time : time,
     easing : function(){ },
-    begin ：function(){ },
-    progress : function(shapes){ },
-    end : function(){ }
+    begin ：function(shapes){ },
+    progress : function(shapes, percent){ },
+    end : function(shapes){ }
 })
 ```
 
@@ -102,7 +102,7 @@ npm install pasition
 
 CDN地址下载下来使用:
 
-[https://unpkg.com/pasition@0.5.0/dist/pasition.js](https://unpkg.com/pasition@0.5.0/dist/pasition.js)
+[https://unpkg.com/pasition@0.5.1/dist/pasition.js](https://unpkg.com/pasition@0.5.1/dist/pasition.js)
 
 ## 使用指南
 
@@ -113,9 +113,9 @@ pasition.animate({
     to : toPath,
     time : time,
     easing : function(){ },
-    begin ：function(){ },
-    progress : function(shapes){ },
-    end : function(){ }
+    begin ：function(shapes){ },
+    progress : function(shapes, percent){ },
+    end : function(shapes){ }
 })
 ```
 

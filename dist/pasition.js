@@ -1,5 +1,5 @@
 /**
- * pasition v0.5.0 By dntzhang
+ * pasition v0.5.1 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -841,14 +841,14 @@ pasition.animate = function (option) {
         var dt = new Date() - beginTime;
         if (dt >= time) {
             outShape = pathB;
-            progress(outShape);
+            progress(outShape, 1);
             end(outShape);
             cancelAnimationFrame(tickId);
             return;
         }
-
-        outShape = pasition._lerp(pathArr[0], pathArr[1], easing(dt / time));
-        progress(outShape);
+        var percent = easing(dt / time);
+        outShape = pasition._lerp(pathArr[0], pathArr[1], percent);
+        progress(outShape, percent);
         tickId = requestAnimationFrame(tick);
     };
     tick();
