@@ -243,7 +243,7 @@
         </a>
     </div>
     <p class="credits">
-        v<span class="version">0.4.2</span> © <span class="date">2017</span> AlloyTeam.com
+        v<span class="version">0.5.0</span> © <span class="date">2017</span> AlloyTeam.com
     </p>
 </div>
 
@@ -282,26 +282,29 @@
             context = canvas.getContext('2d')
 
 
-    function animate(arr,indexA,indexB){
-        pasition.animate(arr[indexA],arr[indexB],1000,{
-            progress:function(shapes){
+    function animate(arr,indexA,indexB) {
+        pasition.animate({
+            from: arr[indexA],
+            to: arr[indexB],
+            time: 1000,
+            progress: function (shapes) {
                 context.clearRect(0, 0, canvas.width, canvas.height)
-                shapes.forEach(function(curves){
+                shapes.forEach(function (curves) {
                     //	renderShapes(context,curves,"#006DF0")
 
-                    curves.forEach(function(curve){
-                        renderCurve(context,curve,"#006DF0")
+                    curves.forEach(function (curve) {
+                        renderCurve(context, curve, "#006DF0")
                     })
                 })
             },
-            end:function(){
-                setTimeout(function(){
+            end: function () {
+                setTimeout(function () {
                     indexA++
                     indexB++
-                    if(indexA===arr.length)indexA = 0
-                    if(indexB===arr.length)indexB = 0
-                    animate(arr,indexA,indexB)
-                },2000)
+                    if (indexA === arr.length)indexA = 0
+                    if (indexB === arr.length)indexB = 0
+                    animate(arr, indexA, indexB)
+                }, 2000)
 
             }
         })

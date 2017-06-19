@@ -415,9 +415,9 @@ pasition._lerp = function (pathA, pathB, t) {
 }
 
 
-pasition.animate = function (pathA, pathB, time, option) {
-    pathA = pasition.path2shapes(pathA)
-    pathB = pasition.path2shapes(pathB)
+pasition.animate = function (option) {
+    pathA = pasition.path2shapes(option.from)
+    pathB = pasition.path2shapes(option.to)
     let pathArr  = pasition._preprocessing(pathA,pathB)
 
     let beginTime = new Date(),
@@ -431,7 +431,8 @@ pasition.animate = function (pathA, pathB, time, option) {
                 return v
             },
         tickId = null,
-        outShape = null
+        outShape = null,
+        time = option.time
 
     begin(pathA)
 

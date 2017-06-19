@@ -289,7 +289,10 @@
 
 
 	function animate(arr,indexA,indexB){
-		pasition.animate(arr[indexA],arr[indexB],1500,{
+		pasition.animate({
+			from: arr[indexA],
+			to: arr[indexB],
+			time: 1500,
 			progress:function(shapes){
 				context.clearRect(0, 0, canvas.width, canvas.height)
 				shapes.forEach(function(curves){

@@ -243,7 +243,7 @@
 
 	</div>
 	<p class="credits">
-		v<span class="version">0.4.2</span> © <span class="date">2017</span> AlloyTeam.com
+		v<span class="version">0.5.0</span> © <span class="date">2017</span> AlloyTeam.com
 	</p>
 </div>
 
@@ -282,7 +282,10 @@
 
 
 	function animate(arr,indexA,indexB){
-		pasition.animate(arr[indexA],arr[indexB],1000,{
+		pasition.animate({
+			from: arr[indexA],
+			to: arr[indexB],
+			time: 1000,
 			progress:function(shapes){
 				context.clearRect(0, 0, canvas.width, canvas.height)
 				shapes.forEach(function(curves){

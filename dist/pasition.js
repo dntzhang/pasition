@@ -1,5 +1,5 @@
 /**
- * pasition v0.4.2 By dntzhang
+ * pasition v0.5.0 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -819,9 +819,9 @@ pasition._lerp = function (pathA, pathB, t) {
     return shapes;
 };
 
-pasition.animate = function (pathA, pathB, time, option) {
-    pathA = pasition.path2shapes(pathA);
-    pathB = pasition.path2shapes(pathB);
+pasition.animate = function (option) {
+    pathA = pasition.path2shapes(option.from);
+    pathB = pasition.path2shapes(option.to);
     var pathArr = pasition._preprocessing(pathA, pathB);
 
     var beginTime = new Date(),
@@ -832,7 +832,8 @@ pasition.animate = function (pathA, pathB, time, option) {
         return v;
     },
         tickId = null,
-        outShape = null;
+        outShape = null,
+        time = option.time;
 
     begin(pathA);
 

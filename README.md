@@ -30,12 +30,15 @@ npm install pasition
 
 or get js by the cdn address:
 
-[https://unpkg.com/pasition@0.4.2/dist/pasition.js](https://unpkg.com/pasition@0.4.2/dist/pasition.js)
+[https://unpkg.com/pasition@0.5.0/dist/pasition.js](https://unpkg.com/pasition@0.5.0/dist/pasition.js)
 
 ## Usage
 
 ```js
-pasition.animate(pathA, pathB, time, {
+pasition.animate({
+    from : fromPath,
+    to : toPath,
+    time : time,
     easing : function(){ },
     begin ：function(){ },
     progress : function(shapes){ },
@@ -63,10 +66,10 @@ T/t = smooth quadratic Belzier curveto
 Example:
 
 ```js
-pasition.animate(
-        'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
-        'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
-        1000,{
+pasition.animate({
+            from: 'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
+            to: 'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
+            time: 1000,
             easing : function(){ },
             begin:function(shapes){ },
             progress : function(shapes){
@@ -99,13 +102,16 @@ npm install pasition
 
 CDN地址下载下来使用:
 
-[https://unpkg.com/pasition@0.4.2/dist/pasition.js](https://unpkg.com/pasition@0.4.2/dist/pasition.js)
+[https://unpkg.com/pasition@0.5.0/dist/pasition.js](https://unpkg.com/pasition@0.5.0/dist/pasition.js)
 
 ## 使用指南
 
 
 ```js
-pasition.animate(pathA, pathB, time, {
+pasition.animate({
+    from : fromPath,
+    to : toPath,
+    time : time,
     easing : function(){ },
     begin ：function(){ },
     progress : function(shapes){ },
@@ -133,10 +139,10 @@ T/t = smooth quadratic Belzier curveto
 举个例子:
 
 ```js
-pasition.animate(
-        'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
-        'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
-        1000,{
+pasition.animate({
+            from: 'M 40 40 Q 60 80 80 40T 120 40 T 160 40 z',
+            to: 'M32,0C14.4,0,0,14.4,0,32s14.3,32,32,32 s32-14.3,32-32S49.7,0,32,0z',
+            time: 1000,
             easing : function(){ },
             begin:function(shapes){ },
             progress : function(shapes){
