@@ -1,5 +1,5 @@
 /**
- * pasition v0.4.1 By dntzhang
+ * pasition v0.4.2 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -428,11 +428,6 @@ pasition.parser = parse;
 
 pasition.lerpCurve = function (pathA, pathB, t) {
 
-    if (t < 0) {
-        t = 0;
-    } else if (t > 1) {
-        t = 1;
-    }
     return pasition.lerpPoints(pathA[0], pathA[1], pathB[0], pathB[1], t).concat(pasition.lerpPoints(pathA[2], pathA[3], pathB[2], pathB[3], t)).concat(pasition.lerpPoints(pathA[4], pathA[5], pathB[4], pathB[5], t)).concat(pasition.lerpPoints(pathA[6], pathA[7], pathB[6], pathB[7], t));
 };
 
@@ -758,9 +753,10 @@ pasition._subShapes = function (pathA, pathB, count) {
     var _loop2 = function _loop2(i) {
         var shape = pathB[pathB.length - 1];
         var newShape = [];
-
+        var x = shape[0][0],
+            y = shape[0][1];
         shape.forEach(function () {
-            newShape.push(shape[0].slice(0));
+            newShape.push([x, y, x, y, x, y, x, y]);
         });
 
         pathB.push(newShape);

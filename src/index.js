@@ -7,11 +7,6 @@ pasition.parser = parser
 
 pasition.lerpCurve = function (pathA, pathB, t) {
 
-    if (t < 0) {
-        t = 0
-    } else if (t > 1) {
-        t = 1
-    }
     return pasition.lerpPoints(pathA[0], pathA[1], pathB[0], pathB[1], t)
         .concat(pasition.lerpPoints(pathA[2], pathA[3], pathB[2], pathB[3], t))
         .concat(pasition.lerpPoints(pathA[4], pathA[5], pathB[4], pathB[5], t))
@@ -354,9 +349,10 @@ pasition._subShapes= function (pathA, pathB, count) {
     for (let i = 0; i < count; i++) {
         let shape = pathB[pathB.length - 1]
         let newShape = []
-
+        let x = shape[0][0],
+            y = shape[0][1]
         shape.forEach(function () {
-            newShape.push(shape[0].slice(0))
+            newShape.push([x, y, x, y, x, y, x, y])
         })
 
         pathB.push(newShape)
