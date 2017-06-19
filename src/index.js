@@ -2,7 +2,7 @@ import arcToBezier from  './arc2bezier.js'
 import parser from './svg-path-parser.js'
 import { sort, sortCurves } from './sort.js'
 
-var pasition = {}
+let pasition = {}
 pasition.parser = parser
 
 pasition.lerpCurve = function (pathA, pathB, t) {
@@ -41,7 +41,7 @@ pasition.path2shapes = function (path) {
     //A = elliptical Arc
     //Z = closepath
     //以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位(从上一个点开始)。
-    var cmds = pasition.parser(path),
+    let cmds = pasition.parser(path),
         preX = 0,
         preY = 0,
         j = 0,
@@ -51,17 +51,20 @@ pasition.path2shapes = function (path) {
         closeX,
         closeY,
         preCX,
-        preCY
+        preCY,
+        sLen,
+        curves,
+        lastCurve
 
 
     for (; j < len; j++) {
-        var item = cmds[j]
-        var action = item[0]
-        var preItem = cmds[j - 1]
+        let item = cmds[j]
+        let action = item[0]
+        let preItem = cmds[j - 1]
 
         switch (action) {
             case 'm':
-                var sLen = shapes.length
+                sLen = shapes.length
                 shapes[sLen] = []
                 current = shapes[sLen]
                 preX = preX+item[1]
@@ -69,8 +72,7 @@ pasition.path2shapes = function (path) {
                 break
             case 'M':
 
-                var sLen = shapes.length
-
+                sLen = shapes.length
                 shapes[sLen] = []
                 current = shapes[sLen]
                 preX = item[1]
@@ -150,7 +152,7 @@ pasition.path2shapes = function (path) {
 
                 break
             case 'a':
-                var currentPoint = {
+                curves = arcToBezier({
                     rx: item[1],
                     ry:  item[2],
                     px: preX,
@@ -160,11 +162,8 @@ pasition.path2shapes = function (path) {
                     sweepFlag:  item[5],
                     cx:  preX+item[6],
                     cy:  preX+item[7]
-                }
-
-
-                var curves = arcToBezier(currentPoint)
-                var lastCurve = curves[curves.length-1]
+                })
+                lastCurve = curves[curves.length-1]
 
 
                 curves.forEach((curve,index)=>{
@@ -181,7 +180,8 @@ pasition.path2shapes = function (path) {
                 break
 
             case 'A':
-                var currentPoint = {
+
+                curves = arcToBezier({
                     rx: item[1],
                     ry:  item[2],
                     px: preX,
@@ -191,11 +191,8 @@ pasition.path2shapes = function (path) {
                     sweepFlag:  item[5],
                     cx:  item[6],
                     cy:  item[7]
-                }
-
-
-                var curves = arcToBezier(currentPoint)
-                var lastCurve = curves[curves.length-1]
+                })
+                lastCurve = curves[curves.length-1]
 
 
                 curves.forEach((curve,index)=>{
@@ -277,7 +274,7 @@ pasition.path2shapes = function (path) {
 
 
 pasition._upCurves = function (curves, count) {
-    var i = 0,
+    let i = 0,
         index = 0,
         len = curves.length
     for (; i < count; i++) {
@@ -299,23 +296,23 @@ function split(x1, y1, x2, y2, x3, y3, x4, y4, t) {
 function _split(x1, y1, x2, y2, x3, y3, x4, y4, t, reverse) {
 
 
-    var x12 = (x2 - x1) * t + x1
-    var y12 = (y2 - y1) * t + y1
+    let x12 = (x2 - x1) * t + x1
+    let y12 = (y2 - y1) * t + y1
 
-    var x23 = (x3 - x2) * t + x2
-    var y23 = (y3 - y2) * t + y2
+    let x23 = (x3 - x2) * t + x2
+    let y23 = (y3 - y2) * t + y2
 
-    var x34 = (x4 - x3) * t + x3
-    var y34 = (y4 - y3) * t + y3
+    let x34 = (x4 - x3) * t + x3
+    let y34 = (y4 - y3) * t + y3
 
-    var x123 = (x23 - x12) * t + x12
-    var y123 = (y23 - y12) * t + y12
+    let x123 = (x23 - x12) * t + x12
+    let y123 = (y23 - y12) * t + y12
 
-    var x234 = (x34 - x23) * t + x23
-    var y234 = (y34 - y23) * t + y23
+    let x234 = (x34 - x23) * t + x23
+    let y234 = (y34 - y23) * t + y23
 
-    var x1234 = (x234 - x123) * t + x123
-    var y1234 = (y234 - y123) * t + y123
+    let x1234 = (x234 - x123) * t + x123
+    let y1234 = (y234 - y123) * t + y123
 
     if(reverse) {
         return [x1234, y1234, x123, y123, x12, y12, x1, y1]
@@ -324,7 +321,7 @@ function _split(x1, y1, x2, y2, x3, y3, x4, y4, t, reverse) {
 }
 
 pasition._splitCurves = function (curves, count) {
-    var i = 0,
+    let i = 0,
         index = 0
 
     for (; i < count; i++) {
@@ -342,10 +339,10 @@ pasition._splitCurves = function (curves, count) {
 
 
 pasition._upShapes = function (shapes, count) {
-    var i = 0
-    for (; i < count; i++) {
-        var shape = shapes[shapes.length - 1]
-        var newShape = []
+
+    for (let i = 0; i < count; i++) {
+        let shape = shapes[shapes.length - 1]
+        let newShape = []
 
         shape.forEach(function (curve) {
 
@@ -362,47 +359,47 @@ pasition.lerp = function (pathA, pathB, t) {
 
 pasition._preprocessing = function(pathA, pathB){
 
-    var lenA = pathA.length,
+    let lenA = pathA.length,
         lenB = pathB.length,
-        pathA = JSON.parse(JSON.stringify(pathA)),
-        pathB = JSON.parse(JSON.stringify(pathB))
+        clonePathA = JSON.parse(JSON.stringify(pathA)),
+        clonePathB = JSON.parse(JSON.stringify(pathB))
 
     if (lenA > lenB) {
-        pasition._upShapes(pathB, lenA - lenB)
+        pasition._upShapes(clonePathB, lenA - lenB)
     } else if (lenA < lenB) {
-        pasition._upShapes(pathA, lenB - lenA)
+        pasition._upShapes(clonePathA, lenB - lenA)
     }
 
-    pathA = sort(pathA,pathB)
+    clonePathA = sort(clonePathA,clonePathB)
 
-    pathA.forEach(function (curves, index) {
+    clonePathA.forEach(function (curves, index) {
 
-        var lenA = curves.length,
-            lenB = pathB[index].length
+        let lenA = curves.length,
+            lenB = clonePathB[index].length
 
         if (lenA > lenB) {
 
-            pasition._splitCurves(pathB[index], lenA - lenB)
+            pasition._splitCurves(clonePathB[index], lenA - lenB)
         } else if (lenA < lenB) {
             pasition._splitCurves(curves, lenB - lenA)
         }
     })
 
 
-    pathA.forEach(function (curves, index) {
-        pathA[index] = sortCurves(curves, pathB[index])
+    clonePathA.forEach(function (curves, index) {
+        clonePathA[index] = sortCurves(curves, clonePathB[index])
     })
 
-    return [pathA,pathB]
+    return [clonePathA,clonePathB]
 
 }
 
 pasition._lerp = function (pathA, pathB, t) {
 
 
-    var shapes = []
+    let shapes = []
     pathA.forEach(function (curves, index) {
-        var newCurves = []
+        let newCurves = []
         curves.forEach(function (curve, curveIndex) {
             newCurves.push(pasition.lerpCurve(curve, pathB[index][curveIndex], t))
         })
@@ -417,7 +414,7 @@ pasition.animate = function (pathA, pathB, time, option) {
     pathB = pasition.path2shapes(pathB)
     let pathArr  = pasition._preprocessing(pathA,pathB)
 
-    var beginTime = new Date(),
+    let beginTime = new Date(),
         end = option.end || function () {
             },
         progress = option.progress || function () {
@@ -432,8 +429,8 @@ pasition.animate = function (pathA, pathB, time, option) {
 
     begin(pathA)
 
-    var tick = function () {
-        var dt = new Date() - beginTime
+    let tick = function () {
+        let dt = new Date() - beginTime
         if (dt >= time) {
             outShape = pathB
             progress(outShape)
