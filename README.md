@@ -6,7 +6,7 @@
 pasition === path transition
 </h3>
 <p align="center">
-Path Transition library for making cool animation.  (1kb gzip) 
+Path Transition library for making cool animation.  (1kb) 
 </p>
 <p align="center">
   <a href="https://travis-ci.org/AlloyTeam/omi"><img src="https://travis-ci.org/AlloyTeam/omi.svg"></a>
