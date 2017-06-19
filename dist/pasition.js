@@ -1,5 +1,5 @@
 /**
- * pasition v0.4.0 By dntzhang
+ * pasition v0.4.1 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -733,35 +733,6 @@ pasition._splitCurves = function (curves, count) {
 
         index += 2;
         if (index >= curves.length - 1) {
-            index = 0;
-        }
-    }
-};
-
-function splitShape(shape) {
-    var len = shape.length;
-    var hLen = Math.round(len / 2);
-
-    var left = shape.splice(0, hLen);
-    shape.unshift(left[left.length - 1].slice(0));
-    return {
-        left: left,
-        right: shape
-    };
-}
-
-pasition._splitShapes = function (shapes, count) {
-
-    var index = 0;
-
-    for (var i = 0; i < count; i++) {
-
-        var cs = splitShape(shapes[index]);
-        shapes.splice(index, 1);
-        shapes.splice(index, 0, cs.left, cs.right);
-
-        index += 2;
-        if (index >= shapes.length - 1) {
             index = 0;
         }
     }

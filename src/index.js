@@ -337,36 +337,6 @@ pasition._splitCurves = function (curves, count) {
     }
 }
 
-function splitShape(shape){
-    let len =  shape.length
-    let hLen = Math.round(len/2)
-
-    let left = shape.splice(0,hLen)
-    shape.unshift(left[left.length-1].slice(0))
-    return {
-        left :left,
-        right:shape
-    }
-
-}
-
-pasition._splitShapes = function (shapes, count) {
-
-    let index = 0
-
-    for (let i = 0; i < count; i++) {
-
-        let cs = splitShape(shapes[index])
-        shapes.splice(index,1)
-        shapes.splice(index,0,cs.left,cs.right)
-
-        index+=2
-        if(index >= shapes.length-1) {
-            index = 0
-        }
-    }
-}
-
 pasition._upShapes = function (shapes, count) {
 
     for (let i = 0; i < count; i++) {
