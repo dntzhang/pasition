@@ -22,6 +22,8 @@ CDN地址下载下来使用:
 
 ## 使用指南
 
+### pasition.animate
+
 ```js
 pasition.animate({
     from : fromPath,
@@ -60,12 +62,42 @@ pasition.animate({
             time: 1000,
             easing : function(){ },
             begin:function(shapes){ },
-            progress : function(shapes){
+            progress : function(shapes, percent){
                 //你可以在任何你想绘制的地方绘制,如canvas、svg、webgl
             },
             end : function(shapes){ }
         });
 ```
+
+对上面传入的配置项目一一解释下:
+
+* from 起始的路径
+* to 终点的路径
+* time 从from到to所需要的时间
+* easing 缓动函数(不填默认是匀速运动)
+* begin 开始运动的回调函数
+* progress 运动过程中的回调函数
+* end 运动结束的回调函数
+
+在progress里可以拿到path转变过程中的shapes和运动进度percent（范围是0-1）。下面来看看shapes的结构:
+
+```js
+[
+    [
+       [],    //curve
+       [],    //curve
+       []    //curve   
+    ],      //shape      
+    [[],[],[],[],[]],     //shape      
+    [[],[],[],[],[]]     //shape    
+]
+```
+
+在开发者工具里截图:
+
+![](http://images2015.cnblogs.com/blog/105416/201706/105416-20170620102737116-105264871.jpg)
+
+### pasition.lerp
 
 你可以通过 `pasition.lerp` 方法拿到插值中的shapes:
 
