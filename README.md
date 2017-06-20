@@ -67,7 +67,7 @@ pasition.animate({
             time: 1000,
             easing : function(){ },
             begin:function(shapes){ },
-            progress : function(shapes){
+            progress : function(shapes, percent){
                 //render you shape to svg or canvas or webgl
             },
             end : function(shapes){ }
@@ -140,7 +140,7 @@ pasition.animate({
             time: 1000,
             easing : function(){ },
             begin:function(shapes){ },
-            progress : function(shapes){
+            progress : function(shapes, percent){
                 //你可以在任何你想绘制的地方绘制,如canvas、svg、webgl
             },
             end : function(shapes){ }
