@@ -1,7 +1,7 @@
 {
   "name": "pasition",
   "version": "1.0.0",
-  "description": "Path Transition.",
+  "description": "Path Transition with little JS code, render to anywhere.",
   "main": "dist/pasition.js",
   "scripts": {
     "dev": "rollup -c",
