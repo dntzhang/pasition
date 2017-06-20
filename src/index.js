@@ -363,7 +363,9 @@ pasition.lerp = function (pathA, pathB, t) {
     return pasition._lerp( pasition.path2shapes(pathA), pasition.path2shapes(pathB), t)
 }
 
-pasition._preprocessing = function(pathA, pathB){
+pasition.MIM_CURVES_COUNT = 100
+
+pasition._preprocessing = function(pathA, pathB) {
 
     let lenA = pathA.length,
         lenB = pathB.length,
@@ -371,12 +373,12 @@ pasition._preprocessing = function(pathA, pathB){
         clonePathB = JSON.parse(JSON.stringify(pathB))
 
     if (lenA > lenB) {
-        pasition._subShapes(clonePathA, clonePathB, lenA-lenB  )
+        pasition._subShapes(clonePathA, clonePathB, lenA - lenB)
     } else if (lenA < lenB) {
         pasition._upShapes(clonePathA, lenB - lenA)
     }
 
-    clonePathA = sort(clonePathA,clonePathB)
+    clonePathA = sort(clonePathA, clonePathB)
 
     clonePathA.forEach(function (curves, index) {
 
@@ -384,11 +386,22 @@ pasition._preprocessing = function(pathA, pathB){
             lenB = clonePathB[index].length
 
         if (lenA > lenB) {
-
-            pasition._splitCurves(clonePathB[index], lenA - lenB)
+            if (lenA < pasition.MIM_CURVES_COUNT) {
+                pasition._splitCurves(curves, pasition.MIM_CURVES_COUNT - lenA)
+                pasition._splitCurves(clonePathB[index], pasition.MIM_CURVES_COUNT - lenB)
+            } else {
+                pasition._splitCurves(clonePathB[index], lenA - lenB)
+            }
         } else if (lenA < lenB) {
-            pasition._splitCurves(curves, lenB - lenA)
+            if (lenB < pasition.MIM_CURVES_COUNT) {
+                pasition._splitCurves(curves, pasition.MIM_CURVES_COUNT - lenA)
+                pasition._splitCurves(clonePathB[index], pasition.MIM_CURVES_COUNT - lenB)
+            } else {
+                pasition._splitCurves(curves, lenB - lenA)
+            }
         }
+
+
     })
 
 
@@ -396,7 +409,7 @@ pasition._preprocessing = function(pathA, pathB){
         clonePathA[index] = sortCurves(curves, clonePathB[index])
     })
 
-    return [clonePathA,clonePathB]
+    return [clonePathA, clonePathB]
 
 }
 

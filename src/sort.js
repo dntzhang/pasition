@@ -58,8 +58,9 @@ function sortCurves(curvesA, curvesB){
     let list = []
     arrList.forEach(arr => {
         let distance = 0
+        let i = 0
         arr.forEach(index=> {
-            distance += curveDistance(curvesA[index], curvesB[index])
+            distance += curveDistance(curvesA[index], curvesB[i++])
         })
         list.push({index: arr, distance: distance})
     })

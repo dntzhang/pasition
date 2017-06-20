@@ -1,5 +1,5 @@
 /**
- * pasition v0.5.1 By dntzhang
+ * pasition v1.0.0 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -332,8 +332,9 @@ function sortCurves(curvesA, curvesB) {
     var list = [];
     arrList.forEach(function (arr) {
         var distance = 0;
+        var i = 0;
         arr.forEach(function (index) {
-            distance += curveDistance(curvesA[index], curvesB[index]);
+            distance += curveDistance(curvesA[index], curvesB[i++]);
         });
         list.push({ index: arr, distance: distance });
     });
@@ -771,6 +772,8 @@ pasition.lerp = function (pathA, pathB, t) {
     return pasition._lerp(pasition.path2shapes(pathA), pasition.path2shapes(pathB), t);
 };
 
+pasition.MIM_CURVES_COUNT = 100;
+
 pasition._preprocessing = function (pathA, pathB) {
 
     var lenA = pathA.length,
@@ -792,10 +795,19 @@ pasition._preprocessing = function (pathA, pathB) {
             lenB = clonePathB[index].length;
 
         if (lenA > lenB) {
-
-            pasition._splitCurves(clonePathB[index], lenA - lenB);
+            if (lenA < pasition.MIM_CURVES_COUNT) {
+                pasition._splitCurves(curves, pasition.MIM_CURVES_COUNT - lenA);
+                pasition._splitCurves(clonePathB[index], pasition.MIM_CURVES_COUNT - lenB);
+            } else {
+                pasition._splitCurves(clonePathB[index], lenA - lenB);
+            }
         } else if (lenA < lenB) {
-            pasition._splitCurves(curves, lenB - lenA);
+            if (lenB < pasition.MIM_CURVES_COUNT) {
+                pasition._splitCurves(curves, pasition.MIM_CURVES_COUNT - lenA);
+                pasition._splitCurves(clonePathB[index], pasition.MIM_CURVES_COUNT - lenB);
+            } else {
+                pasition._splitCurves(curves, lenB - lenA);
+            }
         }
     });
 

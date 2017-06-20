@@ -3,11 +3,8 @@
   <a href ="##"><img alt="Omi" src="http://images2015.cnblogs.com/blog/105416/201706/105416-20170614174731868-1520193923.gif"></a>
 </p>
 <h3 align="center">
-pasition === path transition
+Pasition - Path Transition with little JS code, render to anywhere.
 </h3>
-<p align="center">
-Path Transition library for making cool animation.
-</p>
 <p align="center">
   <a href="https://travis-ci.org/AlloyTeam/omi"><img src="https://travis-ci.org/AlloyTeam/omi.svg"></a>
 </p>
@@ -19,8 +16,6 @@ Path Transition library for making cool animation.
 ## DEMO
 
 * [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
-* [https://alloyteam.github.io/pasition/demo.html](https://alloyteam.github.io/pasition/demo.html)
-* [https://alloyteam.github.io/pasition/large.html](https://alloyteam.github.io/pasition/large.html)
 
 ## Install
 
@@ -30,7 +25,7 @@ npm install pasition
 
 or get js by the cdn address:
 
-[https://unpkg.com/pasition@0.5.1/dist/pasition.js](https://unpkg.com/pasition@0.5.1/dist/pasition.js)
+[https://unpkg.com/pasition@1.0.0/dist/pasition.js](https://unpkg.com/pasition@1.0.0/dist/pasition.js)
 
 ## Usage
 
@@ -102,7 +97,7 @@ npm install pasition
 
 CDN地址下载下来使用:
 
-[https://unpkg.com/pasition@0.5.1/dist/pasition.js](https://unpkg.com/pasition@0.5.1/dist/pasition.js)
+[https://unpkg.com/pasition@1.0.0/dist/pasition.js](https://unpkg.com/pasition@1.0.0/dist/pasition.js)
 
 ## 使用指南
 
@@ -163,8 +158,6 @@ var shapes  = pasition.lerp(pathA, pathB, 0.5)
 ## 在线演示
 
 * [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
-* [https://alloyteam.github.io/pasition/demo.html](https://alloyteam.github.io/pasition/demo.html)
-* [https://alloyteam.github.io/pasition/large.html](https://alloyteam.github.io/pasition/large.html)
 
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
