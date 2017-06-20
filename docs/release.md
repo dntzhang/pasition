@@ -10,7 +10,7 @@ Pasition - Path Transition with little JS code, render to anywhere - 超小尺�
 * [Github源代码](https://github.com/AlloyTeam/pasition)
 * [在线演示](https://alloyteam.github.io/pasition/)
 
-最近和贝塞尔曲线杠上了，如[curvejs](https://github.com/AlloyTeam/curvejs) 和 [pasition](https://github.com/AlloyTeam/pasition) 都是贝塞尔曲线的应用案例。
+最近和贝塞尔曲线杠上了，如[curvejs](https://github.com/AlloyTeam/curvejs) 和 [pasition](https://github.com/AlloyTeam/pasition) 都是贝塞尔曲线的应用案例，未来还有一款和贝塞尔曲线相关的开源的东西，暂时保密。
 
 ## 安装
 
