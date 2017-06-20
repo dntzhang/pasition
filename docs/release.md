@@ -75,7 +75,5 @@ var shapes  = pasition.lerp(pathA, pathB, 0.5)
 ...
 ```
 
-
-
 # License
 This content is released under the [MIT](http://opensource.org/licenses/MIT) License.
