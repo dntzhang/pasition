@@ -5,7 +5,7 @@
 
 ## pasition
 
-Pasition - Path Transition with little JS code, render to anywhere - 超级小尺寸的Path过渡动画类库
+Pasition - Path Transition with little JS code, render to anywhere - 超小尺寸的Path过渡动画类库
 
 * [Github源代码](https://github.com/AlloyTeam/pasition)
 * [在线演示](https://alloyteam.github.io/pasition/)
