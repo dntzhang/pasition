@@ -1,5 +1,5 @@
 /**
- * pasition v1.0.0 By dntzhang
+ * pasition v1.0.1 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -832,8 +832,8 @@ pasition._lerp = function (pathA, pathB, t) {
 };
 
 pasition.animate = function (option) {
-    pathA = pasition.path2shapes(option.from);
-    pathB = pasition.path2shapes(option.to);
+    var pathA = pasition.path2shapes(option.from);
+    var pathB = pasition.path2shapes(option.to);
     var pathArr = pasition._preprocessing(pathA, pathB);
 
     var beginTime = new Date(),

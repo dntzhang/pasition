@@ -429,8 +429,8 @@ pasition._lerp = function (pathA, pathB, t) {
 
 
 pasition.animate = function (option) {
-    pathA = pasition.path2shapes(option.from)
-    pathB = pasition.path2shapes(option.to)
+    let pathA = pasition.path2shapes(option.from)
+    let pathB = pasition.path2shapes(option.to)
     let pathArr  = pasition._preprocessing(pathA,pathB)
 
     let beginTime = new Date(),
