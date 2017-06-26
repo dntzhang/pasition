@@ -11,10 +11,10 @@ pasition这个插件做的很棒，谢谢您及您团队的分享.
 * 第二个思路是提供一个静态方法比如pasition.toSVGString(shapes)之类的方法，开发者自己调用进行转换。
 
 我在使用插件的时候自己写了一个上述的第二种思路的方法,如下(附件中是在您官方示例基础上修改的demo)：
+
+ ``` js
 /**
  * 一个对pasition的扩展,pasition执行过程中产生的实时返回数据(即shapes)格式对于生成canvas画布数据比较方便,但对于生成svg需要额外的处理一下,这里扩展的这个方法是将实时数据生成适合svg路径的字符串格式
- 
- ``` js
  * @param {Object} shapes  pasition执行过程中产生的实时返回数据
  * @return {String} SVGString svg路径格式字符串
  * */
