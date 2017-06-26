@@ -54,5 +54,6 @@ liyongleihf2006
 ## 在线演示
 
 * [pasition + SVG 在线演示](https://alloyteam.github.io/pasition/svg.html)
+* [SVG 演示源代码](https://github.com/AlloyTeam/pasition/blob/master/svg.html)
 
 
