@@ -168,6 +168,8 @@ shapes.forEach(function(curves){
 
 这个函数可以自行尝试一下，生成出的字符串赋值给SVG的Path的d就可以了。
 
+更新: [liyongleihf2006 的SVG解决方案](https://github.com/AlloyTeam/pasition/blob/master/docs/svg.md)
+
 ## Github
 
 [https://github.com/AlloyTeam/pasition](https://github.com/AlloyTeam/pasition)
