@@ -13,8 +13,10 @@
   	c0,0,11.4-89.5,15.8-191h210.2l11.9,191h22.1c0,0-5.3-96.6-0.6-205.7H638.9z"></path>
         <path id="pathE"
               d="M345.47,250L460.94,450L230,450Z M460.94,50L576.41,250L345.47,250Z M576.41,250L691.88,450L460.94,450Z"></path>
+        <path id="pathG"
+              d="M280,250A200,200,0,1,1,680,250A200,200,0,1,1,280,250Z  M320,290A160,160,0,1,1,640,210A160,160,0,1,1,320,290Z"></path>
     </defs>
-    <path id="dom"/>
+    <path id="dom" stroke="black" fill="transparent"/>
 </svg>
 <a href="https://github.com/AlloyTeam/pasition" target="_blank" style="position: absolute;z-index: 1000; right: 0; top: 0;">
     <img src="//alloyteam.github.io/omi/asset/github.png" alt="" />
@@ -28,26 +30,29 @@
      * */
     pasition.toSVGString = function (shapes) {
         /*克隆一下实时数据*/
-        var shape = JSON.parse(JSON.stringify(shapes[0] || []));
+        //var shapes = JSON.parse(JSON.stringify(shapes||[]));
         /*对数据中的每个点数组做处理
         * */
-        shape.forEach(function (point, idx) {
-            if (!idx) {
-                /*
-                 * 若是第一个点数组，那么对该点数组的处理是前面加M,然后前两个点后面加C
-                 * */
-                point.splice(2, 0, "C");
-                point.unshift("M");
-            } else {
-                /*
-                * 除了第一个点数据外,所有的点数组的前两个点删除掉
-                * */
-                point.splice(0, 2, "C");
-            }
-        });
-        return shape.map(function (point) {
-            return point.join(" ");
-        }).join("");
+        return shapes.map(function(shape){
+            shape.forEach(function (point, idx) {
+                if (!idx) {
+                    /*
+                     * 若是第一个点数组，那么对该点数组的处理是前面加M,然后前两个点后面加C
+                     * */
+                    point.splice(2, 0, "C");
+                    point.unshift("M");
+                } else {
+                    /*
+                     * 除了第一个点数据外,所有的点数组的前两个点删除掉
+                     * */
+                    point.splice(0, 2, "C");
+                }
+            });
+            return shape.map(function (point) {
+                return point.join(" ");
+            }).join("");
+        }).join("")
+
     };
     var dom = document.querySelector("#dom");
     var pathA = document.querySelector('#pathA').getAttribute('d'),
@@ -55,7 +60,8 @@
             pathC = document.querySelector('#pathC').getAttribute('d'),
             pathD = document.querySelector('#pathD').getAttribute('d'),
             pathF = document.querySelector('#pathF').getAttribute('d'),
-            pathE = document.querySelector('#pathE').getAttribute('d')
+            pathE = document.querySelector('#pathE').getAttribute('d'),
+            pathG = document.querySelector('#pathG').getAttribute('d');
     function animate(arr, indexA, indexB) {
         pasition.animate({
             from: arr[indexA],
@@ -76,7 +82,7 @@
             }
         })
     }
-    animate([pathA, pathB, pathE, pathB, pathD, pathC, pathF, pathC, pathD, pathB, pathA], 0, 1)
+    animate([pathA, pathB, pathC, pathD, pathE, pathF, pathG], 0, 1)
 </script>
 
 </body>
