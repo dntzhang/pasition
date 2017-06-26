@@ -10,8 +10,8 @@ Pasition - Path Transition with little JS code, render to anywhere.
 </p>
 
 ---
- [﻿中文 README](https://github.com/AlloyTeam/pasition/blob/master/docs/release.md)
 
+## [﻿中文 README](https://github.com/AlloyTeam/pasition/blob/master/docs/release.md)
 
 ## DEMO
 
