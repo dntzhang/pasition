@@ -345,9 +345,9 @@ pasition._upShapes = function (shapes, count) {
     }
 }
 
-pasition._subShapes= function (pathA, pathB, count) {
+pasition._subShapes= function (shapes, count) {
     for (let i = 0; i < count; i++) {
-        let shape = pathB[pathB.length - 1]
+        let shape = shapes[shapes.length - 1]
         let newShape = []
         let x = shape[0][0],
             y = shape[0][1]
@@ -355,7 +355,7 @@ pasition._subShapes= function (pathA, pathB, count) {
             newShape.push([x, y, x, y, x, y, x, y])
         })
 
-        pathB.push(newShape)
+        shapes.push(newShape)
     }
 }
 
@@ -373,7 +373,7 @@ pasition._preprocessing = function(pathA, pathB) {
         clonePathB = JSON.parse(JSON.stringify(pathB))
 
     if (lenA > lenB) {
-        pasition._subShapes(clonePathA, clonePathB, lenA - lenB)
+        pasition._subShapes(clonePathB, lenA - lenB)
     } else if (lenA < lenB) {
         pasition._upShapes(clonePathA, lenB - lenA)
     }

@@ -248,10 +248,10 @@ function parse(path) {
     var data = [];
     path.replace(segment, function (_, command, args) {
         var type = command.toLowerCase();
-        args = parseValues(args
+        args = parseValues(args);
 
         // overloaded moveTo
-        );if (type == 'm' && args.length > 2) {
+        if (type == 'm' && args.length > 2) {
             data.push([command].concat(args.splice(0, 2)));
             type = 'l';
             command = command == 'm' ? 'l' : 'L';
@@ -750,9 +750,9 @@ pasition._upShapes = function (shapes, count) {
     }
 };
 
-pasition._subShapes = function (pathA, pathB, count) {
+pasition._subShapes = function (shapes, count) {
     var _loop2 = function _loop2(i) {
-        var shape = pathB[pathB.length - 1];
+        var shape = shapes[shapes.length - 1];
         var newShape = [];
         var x = shape[0][0],
             y = shape[0][1];
@@ -760,7 +760,7 @@ pasition._subShapes = function (pathA, pathB, count) {
             newShape.push([x, y, x, y, x, y, x, y]);
         });
 
-        pathB.push(newShape);
+        shapes.push(newShape);
     };
 
     for (var i = 0; i < count; i++) {
@@ -782,7 +782,7 @@ pasition._preprocessing = function (pathA, pathB) {
         clonePathB = JSON.parse(JSON.stringify(pathB));
 
     if (lenA > lenB) {
-        pasition._subShapes(clonePathA, clonePathB, lenA - lenB);
+        pasition._subShapes(clonePathB, lenA - lenB);
     } else if (lenA < lenB) {
         pasition._upShapes(clonePathA, lenB - lenA);
     }
