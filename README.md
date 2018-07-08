@@ -5,9 +5,6 @@
 <h3 align="center">
 Pasition - Path Transition with little JS code, render to anywhere.
 </h3>
-<p align="center">
-  <a href="https://travis-ci.org/AlloyTeam/omi"><img src="https://travis-ci.org/AlloyTeam/omi.svg"></a>
-</p>
 
 ---
 
