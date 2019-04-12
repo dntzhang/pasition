@@ -32,7 +32,7 @@ pasition.animate({
     to : toPath,
     time : time,
     easing : function(){ },
-    begin ：function(shapes){ },
+    begin : function(shapes){ },
     progress : function(shapes, percent){ },
     end : function(shapes){ }
 })
