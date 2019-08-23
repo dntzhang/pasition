@@ -156,7 +156,7 @@ pasition.path2shapes = function (path) {
                     largeArcFlag:  item[4],
                     sweepFlag:  item[5],
                     cx:  preX+item[6],
-                    cy:  preX+item[7]
+                    cy:  preY+item[7]
                 })
                 lastCurve = curves[curves.length-1]
 
