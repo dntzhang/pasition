@@ -22,7 +22,7 @@ npm install pasition
 
 or get js by the cdn address:
 
-[https://unpkg.com/pasition@1.0.2/dist/pasition.js](https://unpkg.com/pasition@1.0.2/dist/pasition.js)
+[https://unpkg.com/pasition](https://unpkg.com/pasition)
 
 ## Usage
 
