@@ -1,5 +1,5 @@
 /**
- * pasition v1.0.1 By dntzhang
+ * pasition v1.0.2 By dntzhang
  * Github: https://github.com/AlloyTeam/pasition
  * MIT Licensed.
  */
@@ -734,7 +734,7 @@ pasition._splitCurves = function (curves, count) {
     }
 };
 
-pasition._upShapes = function (shapes, count) {
+function sync(shapes, count) {
     var _loop = function _loop(i) {
         var shape = shapes[shapes.length - 1];
         var newShape = [];
@@ -748,25 +748,7 @@ pasition._upShapes = function (shapes, count) {
     for (var i = 0; i < count; i++) {
         _loop(i);
     }
-};
-
-pasition._subShapes = function (shapes, count) {
-    var _loop2 = function _loop2(i) {
-        var shape = shapes[shapes.length - 1];
-        var newShape = [];
-        var x = shape[0][0],
-            y = shape[0][1];
-        shape.forEach(function () {
-            newShape.push([x, y, x, y, x, y, x, y]);
-        });
-
-        shapes.push(newShape);
-    };
-
-    for (var i = 0; i < count; i++) {
-        _loop2(i);
-    }
-};
+}
 
 pasition.lerp = function (pathA, pathB, t) {
     return pasition._lerp(pasition.path2shapes(pathA), pasition.path2shapes(pathB), t);
@@ -782,9 +764,9 @@ pasition._preprocessing = function (pathA, pathB) {
         clonePathB = JSON.parse(JSON.stringify(pathB));
 
     if (lenA > lenB) {
-        pasition._subShapes(clonePathB, lenA - lenB);
+        sync(clonePathB, lenA - lenB);
     } else if (lenA < lenB) {
-        pasition._upShapes(clonePathA, lenB - lenA);
+        sync(clonePathA, lenB - lenA);
     }
 
     clonePathA = sort(clonePathA, clonePathB);

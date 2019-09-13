@@ -332,7 +332,7 @@ pasition._splitCurves = function (curves, count) {
     }
 }
 
-pasition._upShapes = function (shapes, count) {
+function sync(shapes, count) {
 
     for (let i = 0; i < count; i++) {
         let shape = shapes[shapes.length - 1]
@@ -341,20 +341,6 @@ pasition._upShapes = function (shapes, count) {
         shape.forEach(function (curve) {
             newShape.push(curve.slice(0))
         })
-        shapes.push(newShape)
-    }
-}
-
-pasition._subShapes= function (shapes, count) {
-    for (let i = 0; i < count; i++) {
-        let shape = shapes[shapes.length - 1]
-        let newShape = []
-        let x = shape[0][0],
-            y = shape[0][1]
-        shape.forEach(function () {
-            newShape.push([x, y, x, y, x, y, x, y])
-        })
-
         shapes.push(newShape)
     }
 }
@@ -373,9 +359,9 @@ pasition._preprocessing = function(pathA, pathB) {
         clonePathB = JSON.parse(JSON.stringify(pathB))
 
     if (lenA > lenB) {
-        pasition._subShapes(clonePathB, lenA - lenB)
+        sync(clonePathB, lenA - lenB)
     } else if (lenA < lenB) {
-        pasition._upShapes(clonePathA, lenB - lenA)
+        sync(clonePathA, lenB - lenA)
     }
 
     clonePathA = sort(clonePathA, clonePathB)
