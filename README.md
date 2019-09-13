@@ -8,11 +8,11 @@ Pasition - Path Transition with little JS code, render to anywhere.
 
 ---
 
-## [﻿中文 README](https://github.com/AlloyTeam/pasition/blob/master/docs/release.md)
+## [中文 README](https://github.com/dntzhang/pasition/blob/master/docs/release.md)
 
 ## DEMO
 
-* [https://alloyteam.github.io/pasition/](https://alloyteam.github.io/pasition/)
+* [https://dntzhang.github.io/pasition/](https://dntzhang.github.io/pasition/)
 
 ## Install
 
@@ -22,7 +22,7 @@ npm install pasition
 
 or get js by the cdn address:
 
-[https://unpkg.com/pasition@1.0.1/dist/pasition.js](https://unpkg.com/pasition@1.0.1/dist/pasition.js)
+[https://unpkg.com/pasition@1.0.2/dist/pasition.js](https://unpkg.com/pasition@1.0.2/dist/pasition.js)
 
 ## Usage
 
