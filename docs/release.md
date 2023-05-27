@@ -1,4 +1,4 @@
-﻿# 腾讯AlloyTeam正式发布pasition - 制作酷炫Path过渡动画
+﻿# pasition - 制作酷炫Path过渡动画
 
 ![pv](http://images2015.cnblogs.com/blog/105416/201706/105416-20170620094820476-131210795.gif)
 ![pv](http://images2015.cnblogs.com/blog/105416/201706/105416-20170620094817554-48316107.gif)
